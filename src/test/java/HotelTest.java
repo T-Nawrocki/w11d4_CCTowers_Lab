@@ -1,4 +1,5 @@
 import guest.Guest;
+import hotel.Booking;
 import hotel.Hotel;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,6 +50,14 @@ public class HotelTest {
         hotel.checkIn(guest, bedroom);
         hotel.checkOut(guest, bedroom);
         assertEquals(0, bedroom.getNumberOfGuests());
+    }
+
+    @Test
+    public void canBookRoom() {
+        Booking expected = new Booking(bedroom, 3);
+        Booking hotelBooking = hotel.bookRoom(bedroom, 3);
+        assertEquals(expected.getBedroom(), hotelBooking.getBedroom());
+        assertEquals(expected.getNights(), hotelBooking.getNights());
     }
 
 

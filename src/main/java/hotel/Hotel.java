@@ -32,4 +32,8 @@ public class Hotel {
         room.removeGuest(guest);
     }
 
+    public Booking bookRoom(Bedroom bedroom, int nights) {
+        return new Booking(bedroom, nights);
+    }
+
 }
