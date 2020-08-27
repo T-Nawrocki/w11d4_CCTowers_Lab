@@ -12,4 +12,11 @@ public abstract class Room {
         guests = new ArrayList<Guest>();
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public ArrayList<Guest> getGuests() {
+        return guests;
+    }
 }
