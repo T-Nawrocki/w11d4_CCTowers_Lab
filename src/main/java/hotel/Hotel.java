@@ -1,7 +1,9 @@
 package hotel;
 
+import guest.Guest;
 import room.Bedroom;
 import room.ConferenceRoom;
+import room.Room;
 
 import java.util.ArrayList;
 
@@ -21,4 +23,13 @@ public class Hotel {
     public int getConferencerooms() {
         return this.conferencerooms.size();
     }
+
+    public void checkIn(Guest guest, Room room) {
+        room.addGuest(guest);
+    }
+
+    public void checkOut(Guest guest, Room room) {
+        room.removeGuest(guest);
+    }
+
 }

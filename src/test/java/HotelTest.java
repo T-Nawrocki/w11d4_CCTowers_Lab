@@ -1,3 +1,4 @@
+import guest.Guest;
 import hotel.Hotel;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ public class HotelTest {
     Hotel hotel;
     Bedroom bedroom;
     ConferenceRoom conferenceroom;
+    Guest guest;
 
     @Before
     public void before() {
@@ -23,6 +25,7 @@ public class HotelTest {
         ArrayList<ConferenceRoom> conferenceroomList = new ArrayList<ConferenceRoom>();
         conferenceroomList.add(conferenceroom);
         hotel = new Hotel(bedroomList, conferenceroomList);
+        guest = new Guest("Rebeka");
     }
 
     @Test
@@ -35,7 +38,18 @@ public class HotelTest {
         assertEquals(1, hotel.getConferencerooms());
     }
 
+    @Test
+    public void canCheckInGuest() {
+        hotel.checkIn(guest, bedroom);
+        assertEquals(1, bedroom.getNumberOfGuests());
+    }
 
+    @Test
+    public void canCheckOutGuest() {
+        hotel.checkIn(guest, bedroom);
+        hotel.checkOut(guest, bedroom);
+        assertEquals(0, bedroom.getNumberOfGuests());
+    }
 
 
 }
