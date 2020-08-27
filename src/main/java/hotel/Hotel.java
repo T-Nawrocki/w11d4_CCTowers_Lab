@@ -43,4 +43,12 @@ public class Hotel {
     public HashMap<String, DiningRoom> getDiningrooms() {
         return diningrooms;
     }
+
+    public ArrayList<Bedroom> getVacantBedrooms() {
+        ArrayList<Bedroom> result = new ArrayList<Bedroom>();
+        for (Bedroom bedroom: bedrooms) {
+            if (bedroom.getNumberOfGuests() == 0) result.add(bedroom);
+        }
+        return result;
+    }
 }

@@ -20,18 +20,21 @@ public class HotelTest {
     ConferenceRoom conferenceroom;
     Guest guest;
     DiningRoom diningroom;
+    ArrayList<Bedroom> bedroomList;
+    ArrayList<ConferenceRoom> conferenceroomList;
+    HashMap<String, DiningRoom> diningRoomList;
 
     @Before
     public void before() {
         bedroom = new Bedroom(34, RoomType.SINGLE, 200);
         conferenceroom = new ConferenceRoom("The Blue Room", 80);
-        ArrayList<Bedroom> bedroomList = new ArrayList<Bedroom>();
+        bedroomList = new ArrayList<Bedroom>();
         bedroomList.add(bedroom);
-        ArrayList<ConferenceRoom> conferenceroomList = new ArrayList<ConferenceRoom>();
+        conferenceroomList = new ArrayList<ConferenceRoom>();
         conferenceroomList.add(conferenceroom);
         guest = new Guest("Rebeka");
         diningroom = new DiningRoom("Rustic", 15);
-        HashMap<String, DiningRoom> diningRoomList = new HashMap<String, DiningRoom>();
+        diningRoomList = new HashMap<String, DiningRoom>();
         diningRoomList.put(diningroom.getName(), diningroom);
         hotel = new Hotel(bedroomList, conferenceroomList, diningRoomList);
     }
@@ -73,6 +76,23 @@ public class HotelTest {
         expected.put(diningroom.getName(), diningroom);
         HashMap<String, DiningRoom> actual = hotel.getDiningrooms();
         assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void canGetVacantBedrooms() {
+        Bedroom bedroom1 = new Bedroom(1, RoomType.SINGLE, 10);
+        Bedroom bedroom2 = new Bedroom(2, RoomType.DOUBLE, 50);
+        Bedroom bedroom3 = new Bedroom(3, RoomType.TRIPLE, 100);
+        bedroom1.addGuest(guest);
+
+        ArrayList<Bedroom> bedrooms = new ArrayList<Bedroom>();
+        bedrooms.add(bedroom1);
+        bedrooms.add(bedroom2);
+        bedrooms.add(bedroom3);
+
+        Hotel newHotel = new Hotel(bedrooms, conferenceroomList, diningRoomList);
+
+        assertEquals(2, newHotel.getVacantBedrooms().size());
     }
 
 
