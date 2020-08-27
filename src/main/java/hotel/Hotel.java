@@ -29,7 +29,7 @@ public class Hotel {
     }
 
     public void checkIn(Guest guest, Room room) {
-        room.addGuest(guest);
+        if (getVacantBedrooms().contains(room)) room.addGuest(guest);
     }
 
     public void checkOut(Guest guest, Room room) {
