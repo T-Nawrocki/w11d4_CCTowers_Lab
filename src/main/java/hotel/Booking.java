@@ -19,4 +19,8 @@ public class Booking {
     public int getNights() {
         return nights;
     }
+
+    public int totalPrice() {
+        return bedroom.getNightlyRate() * nights;
+    }
 }
